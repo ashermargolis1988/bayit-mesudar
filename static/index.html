@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>הבית המסודר — Python</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header>
+        <div>
+          <p class="eyebrow">גרסת לימוד מקומית</p>
+          <h1>הבית המסודר</h1>
+          <p>FastAPI + SQLite — בסיס נקי שאפשר לפתח לבד.</p>
+        </div>
+        <a href="/docs" target="_blank">תיעוד API</a>
+      </header>
+
+      <section class="card">
+        <h2>משימה חדשה</h2>
+        <form id="task-form">
+          <input id="title" required maxlength="120" placeholder="מה צריך לעשות?" />
+          <input id="assignee" maxlength="60" value="כולם" placeholder="אחראי/ת" />
+          <input id="due-date" type="date" />
+          <select id="frequency">
+            <option value="once">חד-פעמית</option>
+            <option value="daily">יומית</option>
+            <option value="weekly">שבועית</option>
+          </select>
+          <button type="submit">הוספת משימה</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <div class="list-heading">
+          <h2>המשימות שלי</h2>
+          <span id="counter"></span>
+        </div>
+        <p id="message" role="status"></p>
+        <div id="tasks" class="tasks"></div>
+      </section>
+    </main>
+    <script src="/static/app.js" defer></script>
+  </body>
+</html>
+
