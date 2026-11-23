@@ -25,6 +25,20 @@ def init_db() -> None:
     with connection() as db:
         db.execute(
             """
+            CREATE TABLE IF NOT EXISTS users (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT NOT NULL
+                    CHECK (length(trim(name)) BETWEEN 1 AND 80),
+                email TEXT COLLATE NOCASE NOT NULL UNIQUE,
+                password_hash TEXT NOT NULL
+                    CHECK (length(password_hash) > 0),
+                created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                disabled_at TEXT
+            )
+            """
+        )
+        db.execute(
+            """
             CREATE TABLE IF NOT EXISTS tasks (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 title TEXT NOT NULL,

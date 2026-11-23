@@ -1,16 +1,6 @@
-from collections.abc import Iterator
-
-import pytest
 from fastapi.testclient import TestClient
 
-from app import database
 from app.main import app
-
-
-@pytest.fixture(autouse=True)
-def isolated_database(tmp_path, monkeypatch) -> Iterator[None]:
-    monkeypatch.setattr(database, "DB_PATH", tmp_path / "test.db")
-    yield
 
 
 def test_health() -> None:

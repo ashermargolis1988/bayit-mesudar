@@ -1,11 +1,35 @@
 from datetime import date
 from typing import Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, EmailStr, Field, field_validator
 
 
 TaskStatus = Literal["open", "done"]
 TaskFrequency = Literal["once", "daily", "weekly"]
+
+
+class UserCreateInternal(BaseModel):
+    name: str
+    email: EmailStr
+    password_hash: str = Field(min_length=1)
+
+    @field_validator("name")
+    @classmethod
+    def validate_name(cls, value: str) -> str:
+        normalized = value.strip()
+        if not normalized:
+            raise ValueError("שם המשתמש לא יכול להיות ריק")
+        if len(normalized) > 80:
+            raise ValueError("שם המשתמש יכול להכיל עד 80 תווים")
+        return normalized
+
+
+class User(BaseModel):
+    id: int
+    name: str
+    email: EmailStr
+    created_at: str
+    disabled_at: str | None
 
 
 class TaskCreate(BaseModel):
