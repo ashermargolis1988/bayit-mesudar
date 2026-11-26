@@ -47,7 +47,8 @@ bayit-mesudar-python/
 │   └── .gitkeep              # מיקום מסד הנתונים המקומי
 ├── docs/
 │   ├── DATA_MODEL.md         # מודל הנתונים והחלטות API
-│   └── ROADMAP.md            # מפת הפיתוח
+│   ├── ROADMAP.md            # מפת הפיתוח
+│   └── THREAT_MODEL.md       # מדיניות סיסמאות ואיומים
 ├── static/
 │   ├── app.js                # לוגיקת הממשק בדפדפן
 │   ├── index.html            # עמוד האפליקציה
